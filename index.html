@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <title>Date & Time Widget</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background-color: #1a1a1a;
+        }
+
+        .container {
+            width: 21.87em;
+            display: grid;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            color: #ffffff;
+            align-items: center;
+            grid-template-columns: 8fr 4fr;
+            background-color: #1e90ff;
+            border-radius: 0.5em;
+        }
+
+        .clock-container {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            text-align: center;
+            font-size: 3.75em;
+            margin-left: 0.2em;
+            border-radius: 0.1em;
+            padding: 0.2em 0;
+        }
+
+        .date-container {
+            padding: 1em 0;
+            background-color: #1e90ff;
+            color: #ffffff;
+            text-align: center;
+            border-radius: 0.5em;
+        }
+
+        .date-container span {
+            font-size: 2.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="clock-container"></div>
+        <div class="date-container"></div>
+    </div>
+
+    <script>
+        let dateContainer = document.querySelector(".date-container");
+        let clockContainer = document.querySelector(".clock-container");
+        const weekdays = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        ];
+        const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+        ];
+
+        const dateClock = setInterval(function dateTime() {
+        const today = new Date();
+        let date = today.getDate();
+        let day = weekdays[today.getDay()];
+        let month = monthNames[today.getMonth()];
+
+        let hours = today.getHours();
+        let minutes = today.getMinutes();
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+
+        dateContainer.innerHTML = `<p>${day}</p><p><span>${date}</span></p><p>${month}</p>`;
+        clockContainer.innerHTML = `${hours}:${minutes}`;
+        }, 1000);
+    </script>
+</body>
+
+</html>
